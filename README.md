@@ -1,61 +1,108 @@
-K-Anonymity Optimization Project
-This repository contains three approaches to solve a k-anonymity optimization problem for assigning individuals to resources while maximizing privacy: Exact Model (MiniZinc), Heuristic (Python), and Metaheuristic (Python with genetic algorithms).
-Repository Structure
+# 🔒 K-Anonymity Optimization Project
 
-TFG.mzn: MiniZinc model for the exact approach.
-Data Files:
-M15.dzn: Small instance (4 quasi-IDs, 5 resources, pop. 15).
-M21.dzn: Medium instance (5 quasi-IDs, 5 resources, pop. 30).
-M50.dzn: Large instance (8 quasi-IDs, 6 resources, pop. 50).
+Este repositorio contiene tres enfoques para resolver un problema de optimización de **k-anonimato** al asignar individuos a recursos maximizando la privacidad:
 
+- ✅ Modelo Exacto (MiniZinc)
+- ⚙️ Heurístico (Python)
+- 🧬 Metaheurístico (Python con algoritmos genéticos)
 
-Heuristico_TFG.ipynb: Heuristic algorithm (greedy, Python).
-Metaheuristico_TFG.ipynb: Metaheuristic algorithm (genetic, Python).
+---
 
-Prerequisites
+## 📁 Estructura del Repositorio
 
-Exact Model: MiniZinc (2.8+), solver (e.g., Gecode), MiniZinc IDE (optional).
-Heuristic/Metaheuristic:
-Python 3.10, Jupyter Notebook.
-Libraries: numpy, tqdm, inspyred, matplotlib.pip install numpy tqdm inspyred matplotlib
+- `TFG.mzn`: Modelo en MiniZinc (enfoque exacto)
 
+### Archivos de Datos (`.dzn`)
+- `M15.dzn`: Instancia pequeña (4 quasi-ID, 5 recursos, población 15)
+- `M21.dzn`: Instancia media (5 quasi-ID, 5 recursos, población 30)
+- `M50.dzn`: Instancia grande (8 quasi-ID, 6 recursos, población 50)
 
+### Algoritmos
+- `Heuristico_TFG.ipynb`: Algoritmo heurístico (greedy)
+- `Metaheuristico_TFG.ipynb`: Algoritmo metaheurístico (genético)
 
+---
 
+## ⚙️ Requisitos
 
-Running the Models
-1. Exact Model (TFG.mzn)
+### Modelo Exacto
+- [MiniZinc](https://www.minizinc.org/) 2.8+
+- Algún solver compatible (por ejemplo, Gecode)
+- IDE de MiniZinc (opcional)
 
-Run with MiniZinc CLI:minizinc TFG.mzn M15.dzn
+### Heurístico / Metaheurístico
+- Python 3.10
+- Jupyter Notebook
+- Librerías necesarias:
+  ```bash
+  pip install numpy tqdm inspyred matplotlib
+  ```
 
-Replace M15.dzn with M21.dzn or M50.dzn for other instances.
-Output: Lexicographic order, anonymity vector, patient assignments.
-Notes: Optimal but slow for large instances (e.g., M50.dzn).
+---
 
-2. Heuristic Model (Heuristico_TFG.ipynb)
+## 🚀 Cómo Ejecutar los Modelos
 
-Open Heuristico_TFG.ipynb in Jupyter.
-Set sumas_filas and sumas_columnas (e.g., [4, 4, 5, 2], [4, 2, 4, 3, 2] for M15.dzn).
-Run all cells.
-Output: Assignment matrix, anonymity vector, sum of vector values.
-Notes: Fast, suboptimal solutions.
+### 1. Modelo Exacto (`TFG.mzn`)
 
-3. Metaheuristic Model (Metaheuristico_TFG.ipynb)
+```bash
+minizinc TFG.mzn M15.dzn
+```
 
-Open Metaheuristico_TFG.ipynb in Jupyter.
-Set sumas_filas and sumas_columnas to match a .dzn file.
-Run a configuration (e.g., "RM", "RP", "RPmc").
-Output: Best/worst/median anonymity vectors, fitness, and execution time stats.
-Notes: Balances speed and quality, uses inspyred for genetic algorithms.
+- Puedes cambiar `M15.dzn` por `M21.dzn` o `M50.dzn` para otras instancias.
+- **Salida**: Orden lexicográfico, vector de anonimato, asignación de pacientes.
+- 📝 **Nota**: Óptimo pero lento para instancias grandes (`M50.dzn`).
 
-Testing
+---
 
-Use M15.dzn, M21.dzn, or M50.dzn for testing.
-Modify .dzn files or notebook inputs for custom instances.
+### 2. Modelo Heurístico (`Heuristico_TFG.ipynb`)
 
-Contributing
-Submit pull requests or issues for improvements. Ensure new .dzn files match the format.
-License
-MIT License (see LICENSE).
+1. Abrir el notebook en Jupyter.
+2. Configurar `sumas_filas` y `sumas_columnas`.  
+   Ejemplo para `M15.dzn`:
+   ```python
+   sumas_filas = [4, 4, 5, 2]
+   sumas_columnas = [4, 2, 4, 3, 2]
+   ```
+3. Ejecutar todas las celdas.
+4. **Salida**: Matriz de asignación, vector de anonimato, suma del vector.
+5. ⚡ **Nota**: Rápido, pero con soluciones subóptimas.
 
-For issues, open a ticket on GitHub.
+---
+
+### 3. Modelo Metaheurístico (`Metaheuristico_TFG.ipynb`)
+
+1. Abrir el notebook en Jupyter.
+2. Ajustar `sumas_filas` y `sumas_columnas` de acuerdo con el archivo `.dzn`.
+3. Ejecutar una configuración (por ejemplo `"RM"`, `"RP"`, `"RPmc"`).
+4. **Salida**: Vectores de anonimato (mejor, peor, mediana), fitness, estadísticas de ejecución.
+5. ⚖️ **Nota**: Equilibrio entre velocidad y calidad. Usa `inspyred` para algoritmos genéticos.
+
+---
+
+## 🧪 Pruebas
+
+- Puedes probar con `M15.dzn`, `M21.dzn` o `M50.dzn`.
+- Para instancias personalizadas, modifica los archivos `.dzn` o los inputs en los notebooks.
+
+---
+
+## 🤝 Contribuciones
+
+- Se aceptan *pull requests* y *issues* con sugerencias o mejoras.
+- Si agregas nuevos archivos `.dzn`, asegúrate de seguir el mismo formato que los existentes.
+
+---
+
+## 📄 Licencia
+
+Este proyecto está bajo la Licencia MIT. Consulta el archivo [`LICENSE`](./LICENSE) para más detalles.
+
+---
+
+## 🐛 Problemas o Errores
+
+Abre un *issue* en GitHub si encuentras errores o tienes dudas.
+
+---
+
+¡Gracias por usar este proyecto para mejorar la privacidad en tus asignaciones de datos!
